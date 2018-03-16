@@ -28,7 +28,7 @@ public class Baugruppe {
    
 
     public String getDatum() {
-        return datum ;
+        return datum;
     }
 
     public void setDatum(String datum) {
