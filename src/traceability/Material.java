@@ -11,6 +11,7 @@ package traceability;
  */
 public class Material {
     
+    private String datum;
     private String Kuerzel;
     private String artikelnr;
     private String abteilung;
@@ -20,7 +21,8 @@ public class Material {
     private String Charge;
     private String rollew;
 
-    public Material(String Kuerzel, String artikelnr, String abteilung, String ArbPlatz, String TischNr, String PmNr, String Charge, String rollew) {
+    public Material(String datum, String Kuerzel, String artikelnr, String abteilung, String ArbPlatz, String TischNr, String PmNr, String Charge, String rollew) {
+        this.datum = datum;
         this.Kuerzel = Kuerzel;
         this.artikelnr = artikelnr;
         this.abteilung = abteilung;
@@ -31,6 +33,14 @@ public class Material {
         this.rollew = rollew;
     }
 
+    public String getDatum() {
+        return datum;
+    }
+    
+    /** Mitarbeiterkürzel
+     * 
+     * @return 
+     */
     public String getKuerzel() {
         return Kuerzel;
     }
@@ -63,6 +73,10 @@ public class Material {
         return rollew;
     }
 
+    public void setDatum(String datum) {
+        this.datum = datum;
+    }
+    
     public void setKuerzel(String Kuerzel) {
         this.Kuerzel = Kuerzel;
     }

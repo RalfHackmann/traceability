@@ -17,16 +17,17 @@ import javax.swing.table.AbstractTableModel;
  */
 class MaterialTableModel extends AbstractTableModel {
     
-    private static final int KUERZEL_COL = 0;
-    private static final int ARTIKELNR_COL = 1;
-    private static final int ABTEILUNG_COL = 2;
-    private static final int ARBPLATZ_COL = 3;
+    private static final int KUERZEL_COL = 5;
+    private static final int DATUM_COL = 1;
+    private static final int ARTIKELNR_COL = 3;
+    private static final int ABTEILUNG_COL = 1000;
+    private static final int ARBPLATZ_COL = 1001;
     private static final int TISCHNR_COL = 4;
-    private static final int PMNR_COL = 5;
-    private static final int CHARGE_COL= 6;
-    private static final int ROLLEW_COL = 7;
+    private static final int PMNR_COL = 0;
+    private static final int CHARGE_COL= 2;
+    private static final int ROLLEW_COL = 1002;
     
-    private String[] spaltennamen = { "Kuerzel", "artikelnr", "abteilung", "ArbPlatz", "TischNr", "PmNr", "Charge", "rolle"};
+    private String[] spaltennamen = { "Betriebsauftrag", "Datum", "Charge", "ArtNr", "Arbeitsplatz", "Kürzel"};
     
     private List<Material>material;
 
@@ -57,6 +58,8 @@ class MaterialTableModel extends AbstractTableModel {
         switch (col) {
             case KUERZEL_COL:
                 return tempMaterial.getKuerzel();
+            case DATUM_COL:
+                return tempMaterial.getDatum();
             case ARTIKELNR_COL:
                 return tempMaterial.getArtikelnr();
             case ABTEILUNG_COL:
