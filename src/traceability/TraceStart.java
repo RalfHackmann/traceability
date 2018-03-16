@@ -39,11 +39,10 @@ public class TraceStart extends javax.swing.JFrame {
         jButtonSmdMaschinenvorbelegeung1 = new javax.swing.JButton();
         jTextFieldKuerzel = new javax.swing.JTextField();
         label2 = new java.awt.Label();
+        jButtonTHTMaterialKopieren = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 255, 153));
-        setLocation(new java.awt.Point(0, 400));
-        setPreferredSize(new java.awt.Dimension(320, 420));
+        setLocation(new java.awt.Point(0, 100));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -108,6 +107,14 @@ public class TraceStart extends javax.swing.JFrame {
         label2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label2.setText("Kürzel:");
 
+        jButtonTHTMaterialKopieren.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButtonTHTMaterialKopieren.setText("THT Material kopieren");
+        jButtonTHTMaterialKopieren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTHTMaterialKopierenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +136,8 @@ public class TraceStart extends javax.swing.JFrame {
                             .addComponent(jButtonSmdMaschinenvorbelegeung, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSmdRuesten, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTHTMaterial1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonTHTMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonTHTMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonTHTMaterialKopieren, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -148,18 +156,20 @@ public class TraceStart extends javax.swing.JFrame {
                     .addComponent(jTextFieldKuerzel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTHTMaterial)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonTHTMaterial1)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonTHTMaterialKopieren)
+                .addGap(42, 42, 42)
                 .addComponent(jButtonSmdRuesten)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSmdMaschinenvorbelegeung)
                 .addGap(33, 33, 33)
                 .addComponent(jButtonSmdMaschinenvorbelegeung1)
-                .addGap(78, 78, 78))
+                .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(313, Short.MAX_VALUE)
+                    .addContainerGap(401, Short.MAX_VALUE)
                     .addComponent(jButtonSmdRuesten1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(109, 109, 109)))
         );
@@ -210,10 +220,19 @@ public class TraceStart extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSmdMaschinenvorbelegeung1ActionPerformed
 
     private void jTextFieldKuerzelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldKuerzelActionPerformed
-        // TODO add your handling code here:
-        System.out.println(jTextFieldKuerzel.getText());
+        // TODO add your handling code here
      
     }//GEN-LAST:event_jTextFieldKuerzelActionPerformed
+
+    private void jButtonTHTMaterialKopierenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTHTMaterialKopierenActionPerformed
+        // TODO add your handling code here:
+        if (jTextFieldKuerzel.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte geben Sie Ihr gültiges Mitarbeiterkürzel ein", "Fehler", JOptionPane.WARNING_MESSAGE);
+        } else {
+            stammdaten.setUser(jTextFieldKuerzel.getText());
+            new TraceTHTMaterialKopieren().setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonTHTMaterialKopierenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,6 +279,7 @@ public class TraceStart extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSmdRuesten1;
     private javax.swing.JButton jButtonTHTMaterial;
     private javax.swing.JButton jButtonTHTMaterial1;
+    private javax.swing.JButton jButtonTHTMaterialKopieren;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldKuerzel;
     private java.awt.Label label2;

@@ -3,14 +3,8 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="99" green="ff" red="99" type="rgb"/>
-    </Property>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
-      <Point value="[0, 400]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[320, 420]"/>
+      <Point value="[0, 100]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -53,6 +47,7 @@
                           <Component id="jButtonSmdRuesten" min="-2" pref="288" max="-2" attributes="0"/>
                           <Component id="jButtonTHTMaterial1" min="-2" pref="288" max="-2" attributes="0"/>
                           <Component id="jButtonTHTMaterial" min="-2" pref="288" max="-2" attributes="0"/>
+                          <Component id="jButtonTHTMaterialKopieren" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -79,19 +74,21 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonTHTMaterial" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonTHTMaterial1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonTHTMaterialKopieren" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="jButtonSmdRuesten" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButtonSmdMaschinenvorbelegeung" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="jButtonSmdMaschinenvorbelegeung1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <EmptySpace pref="105" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="313" max="32767" attributes="0"/>
+                  <EmptySpace pref="401" max="32767" attributes="0"/>
                   <Component id="jButtonSmdRuesten1" min="-2" pref="0" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
@@ -192,6 +189,17 @@
         </Property>
         <Property name="text" type="java.lang.String" value="K&#xfc;rzel:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonTHTMaterialKopieren">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="THT Material kopieren"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTHTMaterialKopierenActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

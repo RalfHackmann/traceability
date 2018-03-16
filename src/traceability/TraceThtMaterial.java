@@ -102,7 +102,7 @@ public class TraceThtMaterial extends javax.swing.JFrame {
         label4.setText("Charge:");
 
         jButtonNeu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButtonNeu.setText("Neuer Betribsauftrag");
+        jButtonNeu.setText("Neuer Betriebsauftrag");
         jButtonNeu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNeuActionPerformed(evt);
@@ -205,17 +205,51 @@ public class TraceThtMaterial extends javax.swing.JFrame {
 
     private void jTextFieldChargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChargeActionPerformed
         // TODO add your handling code here:
-        //System.out.println("Charge:  " + jTextFieldCharge.getText());
-        //charge.setText("");
-        jTextFieldSeriennummer.requestFocus();
+        if (jTextFieldCharge.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldCharge.requestFocus();
+        } else {
+            jTextFieldSeriennummer.requestFocus();
+        }
+        
     }//GEN-LAST:event_jTextFieldChargeActionPerformed
 
     private void jTextFieldSeriennummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSeriennummerActionPerformed
         // TODO add your handling code here:
+        if (jTextFieldSeriennummer.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldSeriennummer.requestFocus();
+        } else {
+            insertMaterial();
+        }
+         
+    }//GEN-LAST:event_jTextFieldSeriennummerActionPerformed
 
-        //System.out.println("Kuezel: " + jTextFieldKuerzel.getText() + " PmNr: " + jTextFieldPmNr.getText() + " Tisch: " + jTextFieldTischNr.getText() + " Charge: " + jTextFieldCharge.getText() + 
-         //                   " Seriennummer: " + jTextFieldSeriennummer.getText());
+    private void jTextFieldPmNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPmNrActionPerformed
+        // TODO add your handling code here:
+        if (jTextFieldPmNr.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldPmNr.requestFocus();
+        } else {
+            jTextFieldPmNr.setEditable(false);
+            jTextFieldCharge.requestFocus();
+        }
         
+        //labelBetriebsauftrag.setVisible(true);
+        //labelBetriebsauftrag.setText(jTextFieldPmNr.getText());
+    }//GEN-LAST:event_jTextFieldPmNrActionPerformed
+
+    private void jButtonNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNeuActionPerformed
+        // TODO add your handling code here:
+        jTextFieldPmNr.setEnabled(true);
+        jTextFieldPmNr.setText("");
+        jTextFieldPmNr.setVisible(true);
+        jTextFieldPmNr.requestFocus();
+        jTextFieldPmNr.setEditable(true);
+    }//GEN-LAST:event_jButtonNeuActionPerformed
+
+    
+    protected void insertMaterial() {
         Material tempMaterial = null;
      
         String Kuerzel = stammdaten.getUser(); 
@@ -228,17 +262,16 @@ public class TraceThtMaterial extends javax.swing.JFrame {
         String rollew = "0";
         String datum = "0";
         
-        tempMaterial = new Material (datum, Kuerzel, artikelnr, dieAbteilung, ArbPlatz, TischNr, betriebsauftrag, Charge, rollew);
+        tempMaterial = new Material (datum, Kuerzel, artikelnr, dieAbteilung, ArbPlatz, betriebsauftrag, Charge, rollew);
         
         materialDAO.insertMaterial(tempMaterial);
         
         jTextFieldSeriennummer.setText("");
         jTextFieldCharge.setText("");
         jTextFieldCharge.requestFocus();
+        List<Material> material = null;
         
-              List<Material> material = null;
         try {
-            //material = materialDAO.getAllMaterial();
             material = materialDAO.getMaterial(betriebsauftrag, stammdaten.getArbeitsplatz());
         } catch (SQLException ex) {
             Logger.getLogger(TraceThtMaterial.class.getName()).log(Level.SEVERE, null, ex);
@@ -253,27 +286,9 @@ public class TraceThtMaterial extends javax.swing.JFrame {
         table.getRowSorter().toggleSortOrder(1);
         table.getRowSorter().toggleSortOrder(1);
         
-    }//GEN-LAST:event_jTextFieldSeriennummerActionPerformed
-
-    private void jTextFieldPmNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPmNrActionPerformed
-        // TODO add your handling code here:
-        //jTextFieldPmNr.setEnabled(false);
-        //labelBetriebsauftrag.setBounds(10, 100, 100, 10);
-        jTextFieldPmNr.setEditable(false);
-        jTextFieldCharge.requestFocus();
-        //labelBetriebsauftrag.setVisible(true);
-        //labelBetriebsauftrag.setText(jTextFieldPmNr.getText());
-    }//GEN-LAST:event_jTextFieldPmNrActionPerformed
-
-    private void jButtonNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNeuActionPerformed
-        // TODO add your handling code here:
-        jTextFieldPmNr.setEnabled(true);
-        jTextFieldPmNr.setText("");
-        jTextFieldPmNr.setVisible(true);
-        jTextFieldPmNr.requestFocus();
-        jTextFieldPmNr.setEditable(true);
-    }//GEN-LAST:event_jButtonNeuActionPerformed
-
+    }
+            
+    
     /**
      * @param args the command line arguments
      */

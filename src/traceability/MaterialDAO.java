@@ -118,17 +118,16 @@ public class MaterialDAO {
             PreparedStatement myStmt = null;
             
             myStmt = myConn.prepareStatement("INSERT INTO material"
-                    + " (user, artikelnr, abteilung, ArbPlatz, TischNr, PmNr, Chargenr, rollew)"
-                    + " VALUES (?,?,?,?,?,?,?,?)");
+                    + " (user, artikelnr, abteilung, ArbPlatz, PmNr, Chargenr, rollew)"
+                    + " VALUES (?,?,?,?,?,?,?)");
             
             myStmt.setString(1, theMaterial.getKuerzel());
             myStmt.setString(2, theMaterial.getArtikelnr());
             myStmt.setString(3, theMaterial.getAbteilung());
             myStmt.setString(4, theMaterial.getArbPlatz());
-            myStmt.setString(5, theMaterial.getTischNr());
-            myStmt.setString(6, theMaterial.getPmNr());
-            myStmt.setString(7, theMaterial.getCharge());
-            myStmt.setString(8, theMaterial.getRollew());
+            myStmt.setString(5, theMaterial.getPmNr());
+            myStmt.setString(6, theMaterial.getCharge());
+            myStmt.setString(7, theMaterial.getRollew());
             
             myStmt.executeUpdate();
         } catch (SQLException ex) {
@@ -146,12 +145,11 @@ public class MaterialDAO {
         String artikelnr = myRs.getString("artikelnr");
         String abteilung = myRs.getString("abteilung");
         String ArbPlatz = myRs.getString("ArbPlatz");
-        String TischNr = myRs.getString("TischNr");
         String pmnr = myRs.getString("pmnr");
         String rollew = myRs.getString("rollew");
         String chargenr = myRs.getString("chargenr");
         
-        Material tempMaterial = new Material(datum, user, artikelnr, abteilung, ArbPlatz, TischNr, pmnr, chargenr, rollew);
+        Material tempMaterial = new Material(datum, user, artikelnr, abteilung, ArbPlatz, pmnr, chargenr, rollew);
         
         return tempMaterial;
     }

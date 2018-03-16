@@ -66,8 +66,6 @@ class MaterialTableModel extends AbstractTableModel {
                 return tempMaterial.getAbteilung();
             case ARBPLATZ_COL:
                 return tempMaterial.getArbPlatz();
-            case TISCHNR_COL:
-                return tempMaterial.getTischNr();
             case PMNR_COL:
                 return tempMaterial.getPmNr();
             case CHARGE_COL:

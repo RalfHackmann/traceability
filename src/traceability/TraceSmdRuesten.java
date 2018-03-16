@@ -231,7 +231,7 @@ public class TraceSmdRuesten extends javax.swing.JFrame {
         String rollew = "0";
         String datum = "0";
         
-        tempMaterial = new Material (datum, Kuerzel, artikelnr, dieAbteilung, ArbPlatz, TischNr, PmNr, Charge, rollew);
+        tempMaterial = new Material (datum, Kuerzel, artikelnr, dieAbteilung, ArbPlatz,  PmNr, Charge, rollew);
         
         materialDAO.insertMaterial(tempMaterial);
         

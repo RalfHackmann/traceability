@@ -21,13 +21,12 @@ public class Material {
     private String Charge;
     private String rollew;
 
-    public Material(String datum, String Kuerzel, String artikelnr, String abteilung, String ArbPlatz, String TischNr, String PmNr, String Charge, String rollew) {
+    public Material(String datum, String Kuerzel, String artikelnr, String abteilung, String ArbPlatz, String PmNr, String Charge, String rollew) {
         this.datum = datum;
         this.Kuerzel = Kuerzel;
         this.artikelnr = artikelnr;
         this.abteilung = abteilung;
         this.ArbPlatz = ArbPlatz;
-        this.TischNr = TischNr;
         this.PmNr = PmNr;
         this.Charge = Charge;
         this.rollew = rollew;
@@ -55,10 +54,6 @@ public class Material {
 
     public String getArbPlatz() {
         return ArbPlatz;
-    }
-
-    public String getTischNr() {
-        return TischNr;
     }
 
     public String getPmNr() {
@@ -93,10 +88,6 @@ public class Material {
         this.ArbPlatz = ArbPlatz;
     }
 
-    public void setTischNr(String TischNr) {
-        this.TischNr = TischNr;
-    }
-
     public void setPmNr(String PmNr) {
         this.PmNr = PmNr;
     }
@@ -111,8 +102,8 @@ public class Material {
 
  @Override
  public String toString() {
-     return String.format("Material (Kuerzel=%s, artikelnr=%s, abteilung=%s, ArbPlatz=%s, TischNr=%s, PmNr=%s, Charge=%s, rollew=%s)",
-             Kuerzel, artikelnr, abteilung, ArbPlatz, TischNr, PmNr, Charge, rollew);
+     return String.format("Material (Kuerzel=%s, artikelnr=%s, abteilung=%s, ArbPlatz=%s, PmNr=%s, Charge=%s, rollew=%s)",
+             Kuerzel, artikelnr, abteilung, ArbPlatz, PmNr, Charge, rollew);
  }
 
     

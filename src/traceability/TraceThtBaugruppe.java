@@ -58,6 +58,7 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
         jTextAreaErfasseSn = new javax.swing.JTextArea();
         label5 = new java.awt.Label();
         labelArbeitsplatz = new java.awt.Label();
+        jButtonNeuBetriebsauftrag = new javax.swing.JButton();
 
         setTitle("Traceabiloity THT Baugruppe erfassen");
         setLocation(new java.awt.Point(500, 500));
@@ -120,6 +121,14 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
         labelArbeitsplatz.setText("*******");
         labelArbeitsplatz.setText(stammdaten.getArbeitsplatz());
 
+        jButtonNeuBetriebsauftrag.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonNeuBetriebsauftrag.setText("Neuer Betriebsauftrag");
+        jButtonNeuBetriebsauftrag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNeuBetriebsauftragActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,9 +139,6 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                 .addGap(217, 217, 217))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,6 +167,12 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(113, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonNeuBetriebsauftrag)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,21 +186,26 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labelArbeitsplatz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldAnzahlLK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSeriennummer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelAnzahlErfasseSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldAnzahlLK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSeriennummer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAnzahlErfasseSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNeuBetriebsauftrag)))
                 .addContainerGap())
         );
 
@@ -199,6 +216,57 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
 
     private void jTextFieldSeriennummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSeriennummerActionPerformed
         // TODO add your handling code here:
+         if (jTextFieldSeriennummer.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldSeriennummer.requestFocus();
+        } else {
+            jTextFieldAnzahlLK.requestFocus();
+            insertSeriennummer();
+        }
+        
+      
+    }//GEN-LAST:event_jTextFieldSeriennummerActionPerformed
+
+    private void jTextFieldBetriebsauftragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBetriebsauftragActionPerformed
+        // TODO add your handling code here:
+          if (jTextFieldBetriebsauftrag.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldBetriebsauftrag.requestFocus();
+        } else {
+            jTextFieldAnzahlLK.requestFocus();
+        }
+        
+    }//GEN-LAST:event_jTextFieldBetriebsauftragActionPerformed
+
+    private void jTextFieldAnzahlLKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnzahlLKActionPerformed
+        // TODO add your handling code here:
+        boolean error = false;
+        try {
+        Integer.parseInt(jTextFieldAnzahlLK.getText());
+        } catch (NumberFormatException ex) {
+            error = true;
+            JOptionPane.showMessageDialog(null,"Bitte geben sie eine Ganzzahl im Feld 'Anzahl Leiterkarten im Rahmen' ein","Fehler", JOptionPane.ERROR_MESSAGE);
+            jTextFieldAnzahlLK.requestFocus();
+            jTextFieldAnzahlLK.setText("");
+        }
+        if (error  == false) {
+            jTextFieldSeriennummer.requestFocus();
+        }        
+        
+    }//GEN-LAST:event_jTextFieldAnzahlLKActionPerformed
+
+    private void jButtonNeuBetriebsauftragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNeuBetriebsauftragActionPerformed
+        // TODO add your handling code here:
+        jTextFieldBetriebsauftrag.setEnabled(true);
+        jTextFieldBetriebsauftrag.setText("");
+        jTextFieldAnzahlLK.setText("");
+        jTextFieldBetriebsauftrag.setVisible(true);
+        jTextFieldBetriebsauftrag.requestFocus();
+        jTextFieldBetriebsauftrag.setEditable(true);
+    }//GEN-LAST:event_jButtonNeuBetriebsauftragActionPerformed
+
+    protected void insertSeriennummer() {
+        
         int maxLK;
        
         maxLK = Integer.parseInt(jTextFieldAnzahlLK.getText());
@@ -220,7 +288,6 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                 Baugruppe tempBaugruppe = null;
                 
                 String kuerzel = stammdaten.getUser();
-                System.out.println("Das Kürzel: " + kuerzel);
                 String betriebsauftrag = jTextFieldBetriebsauftrag.getText();
                 String arbeitsplatz = stammdaten.getArbeitsplatz();
                 String abteilung = stammdaten.getAbteilung();
@@ -242,41 +309,14 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                 
             }
         }
-        
-     
-        
         jTextAreaErfasseSn.append(jTextFieldSeriennummer.getText() + "\n");
         
         labelAnzahlErfasseSN.setText(String.valueOf(zaelerLK) + " / " + jTextFieldAnzahlLK.getText());
         jTextFieldSeriennummer.requestFocus();
-         jTextFieldSeriennummer.setText("");
-        //for (int i = 0;i<seriennummern.size();i++){System.out.println(seriennummern.get(i));}
-        //System.out.println(stammdaten.getUser());
- 
-    }//GEN-LAST:event_jTextFieldSeriennummerActionPerformed
-
-    private void jTextFieldBetriebsauftragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBetriebsauftragActionPerformed
-        // TODO add your handling code here:
-        jTextFieldAnzahlLK.requestFocus();
-    }//GEN-LAST:event_jTextFieldBetriebsauftragActionPerformed
-
-    private void jTextFieldAnzahlLKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnzahlLKActionPerformed
-        // TODO add your handling code here:
-        boolean error = false;
-        try {
-        Integer.parseInt(jTextFieldAnzahlLK.getText());
-        } catch (NumberFormatException ex) {
-            error = true;
-            JOptionPane.showMessageDialog(null,"Bitte geben sie eine Ganzzahl im Feld 'Anzahl Leiterkarten im Rahmen' ein","Fehler", JOptionPane.ERROR_MESSAGE);
-            jTextFieldSeriennummer.requestFocus();
-            jTextFieldAnzahlLK.setText("");
-        }
-        if (error  == false) {
-            jTextFieldSeriennummer.requestFocus();
-        }        
-        
-    }//GEN-LAST:event_jTextFieldAnzahlLKActionPerformed
-
+        jTextFieldSeriennummer.setText("");
+      
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -318,6 +358,7 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonNeuBetriebsauftrag;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaErfasseSn;
