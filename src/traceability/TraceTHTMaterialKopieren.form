@@ -43,27 +43,6 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="label5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextFieldMaschine" min="-2" pref="102" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="label6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldBetriebsauftrag" min="-2" pref="102" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="label7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextFieldMaschine1" min="-2" pref="102" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonAnzeigeVonMaterial" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPaneMaterialNach" pref="742" max="32767" attributes="0"/>
                   </Group>
@@ -72,7 +51,26 @@
                       <Component id="jScrollPaneMaterialVon" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="label6" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="label5" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTextFieldBetriebsauftrag" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                  <Component id="jTextFieldVonArbeitsplatz" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="label7" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTextFieldNachArbeitsplatz" min="-2" pref="102" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <Component id="jButtonAnzeigeNachMaterial" min="-2" pref="89" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,11 +90,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="label5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldMaschine" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldVonArbeitsplatz" min="-2" max="-2" attributes="0"/>
                           <Component id="label7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jTextFieldMaschine1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonAnzeigeVonMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldNachArbeitsplatz" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonAnzeigeNachMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -153,14 +151,14 @@
         <Property name="text" type="java.lang.String" value="Betriebsauftrag:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldMaschine">
+    <Component class="javax.swing.JTextField" name="jTextFieldVonArbeitsplatz">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMaschineActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldVonArbeitsplatzActionPerformed"/>
       </Events>
     </Component>
     <Component class="java.awt.Label" name="label7">
@@ -174,14 +172,14 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="nach Arbeitsplatz "/>
       </AccessibilityProperties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldMaschine1">
+    <Component class="javax.swing.JTextField" name="jTextFieldNachArbeitsplatz">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMaschine1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNachArbeitsplatzActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPaneMaterialNach">
@@ -198,15 +196,16 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
-    <Component class="javax.swing.JButton" name="jButtonAnzeigeVonMaterial">
+    <Component class="javax.swing.JButton" name="jButtonAnzeigeNachMaterial">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Anzeigen"/>
+        <Property name="text" type="java.lang.String" value="kopieren"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnzeigeVonMaterialActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnzeigeNachMaterialActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

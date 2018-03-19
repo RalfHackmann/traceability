@@ -26,6 +26,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
     
     private JTable tableVon;
     private JTable tableNach;
+    
 
     /**
      * Creates new form Trace
@@ -35,6 +36,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         
           try {
             materialDAO = new MaterialDAO();
+            insertMaterialDAO = new MaterialDAO();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(TraceTHTMaterialKopieren.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -55,12 +57,12 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         jLabelTischNr = new javax.swing.JLabel();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
-        jTextFieldMaschine = new javax.swing.JTextField();
+        jTextFieldVonArbeitsplatz = new javax.swing.JTextField();
         label7 = new java.awt.Label();
-        jTextFieldMaschine1 = new javax.swing.JTextField();
+        jTextFieldNachArbeitsplatz = new javax.swing.JTextField();
         jScrollPaneMaterialNach = new javax.swing.JScrollPane();
         jScrollPaneMaterialVon = new javax.swing.JScrollPane();
-        jButtonAnzeigeVonMaterial = new javax.swing.JButton();
+        jButtonAnzeigeNachMaterial = new javax.swing.JButton();
 
         setTitle("Tracebility THT Material");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -87,28 +89,29 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         label6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label6.setText("Betriebsauftrag:");
 
-        jTextFieldMaschine.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextFieldMaschine.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldVonArbeitsplatz.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextFieldVonArbeitsplatz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMaschineActionPerformed(evt);
+                jTextFieldVonArbeitsplatzActionPerformed(evt);
             }
         });
 
         label7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label7.setText("nach Arbeitsplatz ");
 
-        jTextFieldMaschine1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextFieldMaschine1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNachArbeitsplatz.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextFieldNachArbeitsplatz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMaschine1ActionPerformed(evt);
+                jTextFieldNachArbeitsplatzActionPerformed(evt);
             }
         });
 
-        jButtonAnzeigeVonMaterial.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButtonAnzeigeVonMaterial.setText("Anzeigen");
-        jButtonAnzeigeVonMaterial.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAnzeigeNachMaterial.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonAnzeigeNachMaterial.setText("kopieren");
+        jButtonAnzeigeNachMaterial.setEnabled(false);
+        jButtonAnzeigeNachMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAnzeigeVonMaterialActionPerformed(evt);
+                jButtonAnzeigeNachMaterialActionPerformed(evt);
             }
         });
 
@@ -125,29 +128,28 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldMaschine, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldBetriebsauftrag, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldMaschine1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonAnzeigeVonMaterial))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPaneMaterialNach, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPaneMaterialVon)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldBetriebsauftrag, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldVonArbeitsplatz, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNachArbeitsplatz, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jButtonAnzeigeNachMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,11 +166,11 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldMaschine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldVonArbeitsplatz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldMaschine1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButtonAnzeigeVonMaterial)))))
+                                .addComponent(jTextFieldNachArbeitsplatz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonAnzeigeNachMaterial)))))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPaneMaterialVon, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,45 +189,95 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
 
     private void jTextFieldBetriebsauftragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBetriebsauftragActionPerformed
         // TODO add your handling code here:
-        //jTextFieldPmNr.setEnabled(false);
-        //labelBetriebsauftrag.setBounds(10, 100, 100, 10);
         jTextFieldBetriebsauftrag.setEditable(false);
-        jTextFieldMaschine.requestFocus();
-        //labelBetriebsauftrag.setVisible(true);
-        //labelBetriebsauftrag.setText(jTextFieldPmNr.getText());
+        jTextFieldVonArbeitsplatz.requestFocus();
+      
     }//GEN-LAST:event_jTextFieldBetriebsauftragActionPerformed
 
-    private void jTextFieldMaschineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMaschineActionPerformed
+    private void jTextFieldVonArbeitsplatzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVonArbeitsplatzActionPerformed
         // TODO add your handling code here:
-      
-    }//GEN-LAST:event_jTextFieldMaschineActionPerformed
-
-    private void jTextFieldMaschine1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMaschine1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMaschine1ActionPerformed
-
-    private void jButtonAnzeigeVonMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnzeigeVonMaterialActionPerformed
-        // TODO add your handling code here:
-        
         String betriebsauftrag = jTextFieldBetriebsauftrag.getText();
-        
-        List<Material> material = null;
+        materialVon = null;
         
          try {
-            material = materialDAO.getMaterial(betriebsauftrag, stammdaten.getArbeitsplatz());
+            materialVon = materialDAO.getMaterial(betriebsauftrag, jTextFieldVonArbeitsplatz.getText());
         } catch (SQLException ex) {
             Logger.getLogger(TraceThtMaterial.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+        if (materialVon.isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null,"Keine Treffer bei Betriebsauftrag: " + betriebsauftrag + "\nund Arbeitsplatz: " + jTextFieldVonArbeitsplatz.getText() , "Fehler", JOptionPane.WARNING_MESSAGE);
+            jTextFieldVonArbeitsplatz.requestFocus();
+            jTextFieldVonArbeitsplatz.setText("");
+            
+        } else {
+        
+            MaterialTableModel model;
+            model = new MaterialTableModel(materialVon);
+            tableVon.setModel(model);
+        
+            // Tabelle nach der 2. Spalte sortiet
+            tableVon.setAutoCreateRowSorter(true);
+            tableVon.getRowSorter().toggleSortOrder(1);
+            tableVon.getRowSorter().toggleSortOrder(1);
+            
+            jTextFieldNachArbeitsplatz.requestFocus();
+        }
+      
+    }//GEN-LAST:event_jTextFieldVonArbeitsplatzActionPerformed
+
+    private void jTextFieldNachArbeitsplatzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNachArbeitsplatzActionPerformed
+        // TODO add your handling code here:
+        materialNach = null;
+        materialNach = materialVon;
+        
+        for ( Material  m : materialNach ) {
+            m.setDatum("");
+            m.setArbPlatz(jTextFieldNachArbeitsplatz.getText());
+            m.setKuerzel(stammdaten.getUser());
+        }
         
         MaterialTableModel model;
-        model = new MaterialTableModel(material);
-        tableVon.setModel(model);
+        model = new MaterialTableModel(materialNach);
+        tableNach.setModel(model);
         
         // Tabelle nach der 2. Spalte sortiet
-        tableVon.setAutoCreateRowSorter(true);
-        tableVon.getRowSorter().toggleSortOrder(1);
-        tableVon.getRowSorter().toggleSortOrder(1);
-    }//GEN-LAST:event_jButtonAnzeigeVonMaterialActionPerformed
+        tableNach.setAutoCreateRowSorter(true);
+        tableNach.getRowSorter().toggleSortOrder(1);
+        tableNach.getRowSorter().toggleSortOrder(1);
+        
+        jButtonAnzeigeNachMaterial.setEnabled(true);
+    }//GEN-LAST:event_jTextFieldNachArbeitsplatzActionPerformed
+
+    private void jButtonAnzeigeNachMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnzeigeNachMaterialActionPerformed
+        // TODO add your handling code here:
+        
+        for ( Material mn : materialNach ) {
+            System.out.println(mn.getDatum() + " | " + mn.getArtikelnr());
+            insertMaterialDAO.insertMaterial(mn);
+       
+        }
+        
+        
+        try {
+            materialNach = materialDAO.getMaterial(jTextFieldBetriebsauftrag.getText(), jTextFieldNachArbeitsplatz.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(TraceTHTMaterialKopieren.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+    
+        
+        MaterialTableModel model;
+        model = new MaterialTableModel(materialNach);
+        tableNach.setModel(model);
+        
+        // Tabelle nach der 2. Spalte sortiet
+        tableNach.setAutoCreateRowSorter(true);
+        tableNach.getRowSorter().toggleSortOrder(1);
+        tableNach.getRowSorter().toggleSortOrder(1);
+    }//GEN-LAST:event_jButtonAnzeigeNachMaterialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,15 +321,17 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         });
     }
 
+    private List<Material> materialVon;
+    private List<Material> materialNach;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAnzeigeVonMaterial;
+    private javax.swing.JButton jButtonAnzeigeNachMaterial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTischNr;
     private javax.swing.JScrollPane jScrollPaneMaterialNach;
     private javax.swing.JScrollPane jScrollPaneMaterialVon;
     private javax.swing.JTextField jTextFieldBetriebsauftrag;
-    private javax.swing.JTextField jTextFieldMaschine;
-    private javax.swing.JTextField jTextFieldMaschine1;
+    private javax.swing.JTextField jTextFieldNachArbeitsplatz;
+    private javax.swing.JTextField jTextFieldVonArbeitsplatz;
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;

@@ -21,8 +21,7 @@ class MaterialTableModel extends AbstractTableModel {
     private static final int DATUM_COL = 1;
     private static final int ARTIKELNR_COL = 3;
     private static final int ABTEILUNG_COL = 1000;
-    private static final int ARBPLATZ_COL = 1001;
-    private static final int TISCHNR_COL = 4;
+    private static final int ARBPLATZ_COL = 4;
     private static final int PMNR_COL = 0;
     private static final int CHARGE_COL= 2;
     private static final int ROLLEW_COL = 1002;
