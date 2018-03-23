@@ -1,5 +1,7 @@
 package traceability;
 
+import DAO.MaterialDAO;
+import traceability.daten.Material;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +19,7 @@ import static traceability.TraceStart.stammdaten;
 
 /**
  *
- * @author U14
+ * @author Ralf Hackmann
  */
 public class TraceThtMaterial extends javax.swing.JFrame {
     

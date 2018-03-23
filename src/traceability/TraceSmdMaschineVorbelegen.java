@@ -19,21 +19,21 @@ import static traceability.TraceStart.stammdaten;
  *
  * @author U14
  */
-public class TraceThtBaugruppe extends javax.swing.JFrame {
+public class TraceSmdMaschineVorbelegen extends javax.swing.JFrame {
     
     private BaugruppeDAO baugruppeDAO;
 
     /**
      * Creates new form TraceThtBaugruppe
      */
-    public TraceThtBaugruppe() {
+    public TraceSmdMaschineVorbelegen() {
         try {
             this.seriennummern = new ArrayList<>();
             initComponents();
             
             baugruppeDAO = new BaugruppeDAO();
         } catch (IOException | SQLException ex) {
-            Logger.getLogger(TraceThtBaugruppe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -336,20 +336,21 @@ public class TraceThtBaugruppe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TraceThtBaugruppe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TraceThtBaugruppe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TraceThtBaugruppe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TraceThtBaugruppe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TraceThtBaugruppe().setVisible(true);
+                new TraceSmdMaschineVorbelegen().setVisible(true);
             }
         });
     }

@@ -1,5 +1,7 @@
 package traceability;
 
+import DAO.MaterialDAO;
+import traceability.daten.Material;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -65,7 +67,7 @@ public class TraceSmdRuesten extends javax.swing.JFrame {
 
         setTitle("Tracebility THT Material");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation(new java.awt.Point(320, 400));
+        setLocation(new java.awt.Point(350, 10));
         setResizable(false);
 
         jTextFieldCharge.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

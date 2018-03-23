@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package traceability;
+package DAO;
 
+import traceability.daten.Material;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -91,9 +92,20 @@ public class MaterialDAO {
         Statement myStmt = null;
         ResultSet myRs = null;
         
+        PreparedStatement selectStmt = null;
+        
         myStmt = myConn.createStatement();
+        
+        selectStmt = myConn.prepareStatement("SELECT * FROM material " 
+                                           + "WHERE ArbPlatz = ? " 
+                                           + "AND pmnr = ? ");
         try {
-            myRs = myStmt.executeQuery("SELECT * FROM material WHERE ArbPlatz = '" + arbeitsplatz  + "' AND pmnr = '" + betriebsauftrag + "'");
+            selectStmt.setString(1, arbeitsplatz);
+            selectStmt.setString(2, betriebsauftrag);
+            
+            myRs = selectStmt.executeQuery();
+            
+            //myRs = myStmt.executeQuery("SELECT * FROM material WHERE ArbPlatz = '" + arbeitsplatz  + "' AND pmnr = '" + betriebsauftrag + "'");
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,"Verbindung zur Datenbank möglicherweise abgebrochen","Fehler", JOptionPane.ERROR_MESSAGE);
@@ -111,31 +123,46 @@ public class MaterialDAO {
         return list;
        
     }
-    
+    /**
+     * Fügt erfasstes Material in die Tabelle Material ein
+     */
     public void insertMaterial (Material theMaterial) {
         
         try {
-            PreparedStatement myStmt = null;
+            PreparedStatement insertStmt = null;
             
-            myStmt = myConn.prepareStatement("INSERT INTO material"
+            insertStmt = myConn.prepareStatement("INSERT INTO material"
                     + " (user, artikelnr, abteilung, ArbPlatz, PmNr, Chargenr, rollew)"
                     + " VALUES (?,?,?,?,?,?,?)");
             
-            myStmt.setString(1, theMaterial.getKuerzel());
-            myStmt.setString(2, theMaterial.getArtikelnr());
-            myStmt.setString(3, theMaterial.getAbteilung());
-            myStmt.setString(4, theMaterial.getArbPlatz());
-            myStmt.setString(5, theMaterial.getPmNr());
-            myStmt.setString(6, theMaterial.getCharge());
-            myStmt.setString(7, theMaterial.getRollew());
+            insertStmt.setString(1, theMaterial.getKuerzel());
+            insertStmt.setString(2, theMaterial.getArtikelnr());
+            insertStmt.setString(3, theMaterial.getAbteilung());
+            insertStmt.setString(4, theMaterial.getArbPlatz());
+            insertStmt.setString(5, theMaterial.getPmNr());
+            insertStmt.setString(6, theMaterial.getCharge());
+            insertStmt.setString(7, theMaterial.getRollew());
             
-            myStmt.executeUpdate();
+            insertStmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Falsche oder unvollständige Eingaben, bitte wiederholen Sie die Eingabe","Fehler", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
+    }
+    
+    public void initMaterial () {
+        
+        try {
+            Statement initStmt = null;
+            initStmt = myConn.createStatement();
+            //ALTER TABLE `material` CHANGE `pmnr` `pmnr` INT(11) UNSIGNED NOT NULL DEFAULT '4711';
+            initStmt.executeUpdate("ALTER TABLE material  CHANGE pmnr pmnr INT(11) UNSIGNED NOT NULL DEFAULT '4712'");
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
     private Material convertRowToMaterial(ResultSet myRs) throws SQLException {

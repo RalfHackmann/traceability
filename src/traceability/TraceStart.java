@@ -5,6 +5,12 @@
  */
 package traceability;
 
+import DAO.MaterialDAO;
+import traceability.daten.Stammdaten;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author U14
  */
 public class TraceStart extends javax.swing.JFrame {
+    
+    private MaterialDAO initMaterialDAO;
  
 
     /**
@@ -19,6 +27,13 @@ public class TraceStart extends javax.swing.JFrame {
      */
     public TraceStart() {
         initComponents();
+        try {
+            initMaterialDAO = new MaterialDAO();
+        } catch (IOException ex) {
+            Logger.getLogger(TraceStart.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TraceStart.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -40,14 +55,16 @@ public class TraceStart extends javax.swing.JFrame {
         jTextFieldKuerzel = new javax.swing.JTextField();
         label2 = new java.awt.Label();
         jButtonTHTMaterialKopieren = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(0, 100));
+        setTitle("mTRACE by esw");
+        setLocation(new java.awt.Point(0, 10));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(" Traceability ");
+        jLabel1.setText("mTRACE");
 
         jButtonTHTMaterial.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonTHTMaterial.setText("THT Material erfassen");
@@ -115,20 +132,16 @@ public class TraceStart extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("by esw");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldKuerzel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +150,18 @@ public class TraceStart extends javax.swing.JFrame {
                             .addComponent(jButtonSmdRuesten, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTHTMaterial1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTHTMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonTHTMaterialKopieren, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonTHTMaterialKopieren, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldKuerzel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -149,24 +173,26 @@ public class TraceStart extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldKuerzel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonTHTMaterial)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonTHTMaterial1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonTHTMaterialKopieren)
-                .addGap(42, 42, 42)
                 .addComponent(jButtonSmdRuesten)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSmdMaschinenvorbelegeung)
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
+                .addComponent(jButtonTHTMaterial)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTHTMaterial1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTHTMaterialKopieren)
+                .addGap(27, 27, 27)
                 .addComponent(jButtonSmdMaschinenvorbelegeung1)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(401, Short.MAX_VALUE)
@@ -213,6 +239,16 @@ public class TraceStart extends javax.swing.JFrame {
 
     private void jButtonSmdMaschinenvorbelegeungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSmdMaschinenvorbelegeungActionPerformed
         // TODO add your handling code here:
+        if (jTextFieldKuerzel.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte geben Sie Ihr gültiges Mitarbeiterkürzel ein", "Fehler", JOptionPane.WARNING_MESSAGE);
+        } else {
+            stammdaten.setUser(jTextFieldKuerzel.getText());
+            new TraceSmdMaschineVorbelegen().setVisible(true);
+        }
+        
+       
+        //initMaterialDAO.initMaterial();
+        
     }//GEN-LAST:event_jButtonSmdMaschinenvorbelegeungActionPerformed
 
     private void jButtonSmdMaschinenvorbelegeung1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSmdMaschinenvorbelegeung1ActionPerformed
@@ -281,6 +317,7 @@ public class TraceStart extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTHTMaterial1;
     private javax.swing.JButton jButtonTHTMaterialKopieren;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextFieldKuerzel;
     private java.awt.Label label2;
     // End of variables declaration//GEN-END:variables

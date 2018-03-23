@@ -1,5 +1,7 @@
 package traceability;
 
+import DAO.MaterialDAO;
+import traceability.daten.Material;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -89,6 +91,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         label6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label6.setText("Betriebsauftrag:");
 
+        jTextFieldVonArbeitsplatz.setEditable(false);
         jTextFieldVonArbeitsplatz.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextFieldVonArbeitsplatz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +102,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
         label7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label7.setText("nach Arbeitsplatz ");
 
+        jTextFieldNachArbeitsplatz.setEditable(false);
         jTextFieldNachArbeitsplatz.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextFieldNachArbeitsplatz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +194,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
     private void jTextFieldBetriebsauftragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBetriebsauftragActionPerformed
         // TODO add your handling code here:
         jTextFieldBetriebsauftrag.setEditable(false);
+        jTextFieldVonArbeitsplatz.setEditable(true);
         jTextFieldVonArbeitsplatz.requestFocus();
       
     }//GEN-LAST:event_jTextFieldBetriebsauftragActionPerformed
@@ -197,6 +202,7 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
     private void jTextFieldVonArbeitsplatzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVonArbeitsplatzActionPerformed
         // TODO add your handling code here:
         String betriebsauftrag = jTextFieldBetriebsauftrag.getText();
+        jTextFieldNachArbeitsplatz.setEditable(true);
         materialVon = null;
         
          try {

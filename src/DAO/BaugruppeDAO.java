@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package traceability;
+package DAO;
 
+import traceability.daten.Baugruppe;
 import java.io.*;
 import java.sql.*;
 import java.util.*;

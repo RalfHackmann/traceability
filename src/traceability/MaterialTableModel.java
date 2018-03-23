@@ -5,6 +5,7 @@
  */
 package traceability;
 
+import traceability.daten.Material;
 import java.util.List;
 import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
