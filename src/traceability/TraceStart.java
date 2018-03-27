@@ -6,7 +6,7 @@
 package traceability;
 
 import DAO.MaterialDAO;
-import traceability.daten.Stammdaten;
+import daten.Stammdaten;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -84,9 +84,15 @@ public class TraceStart extends javax.swing.JFrame {
 
         jButtonSmdRuesten.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonSmdRuesten.setText("SMD Material  rüsten");
+        jButtonSmdRuesten.setHideActionText(true);
         jButtonSmdRuesten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSmdRuestenActionPerformed(evt);
+            }
+        });
+        jButtonSmdRuesten.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonSmdRuestenKeyPressed(evt);
             }
         });
 
@@ -100,6 +106,7 @@ public class TraceStart extends javax.swing.JFrame {
 
         jButtonSmdMaschinenvorbelegeung.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonSmdMaschinenvorbelegeung.setText("SMD Maschine vorbelegen");
+        jButtonSmdMaschinenvorbelegeung.setHideActionText(true);
         jButtonSmdMaschinenvorbelegeung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSmdMaschinenvorbelegeungActionPerformed(evt);
@@ -200,6 +207,8 @@ public class TraceStart extends javax.swing.JFrame {
                     .addGap(109, 109, 109)))
         );
 
+        //jButtonSmdRuesten.setVisible(false);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,6 +278,11 @@ public class TraceStart extends javax.swing.JFrame {
             new TraceTHTMaterialKopieren().setVisible(true);
         }
     }//GEN-LAST:event_jButtonTHTMaterialKopierenActionPerformed
+
+    private void jButtonSmdRuestenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonSmdRuestenKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonSmdRuestenKeyPressed
 
     /**
      * @param args the command line arguments

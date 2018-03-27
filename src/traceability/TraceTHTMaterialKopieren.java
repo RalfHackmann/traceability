@@ -1,7 +1,7 @@
 package traceability;
 
 import DAO.MaterialDAO;
-import traceability.daten.Material;
+import daten.Material;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -130,13 +130,10 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
                 .addComponent(jLabelTischNr)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPaneMaterialNach, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPaneMaterialVon)))
+                    .addComponent(jScrollPaneMaterialNach, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneMaterialVon))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -182,7 +179,6 @@ public class TraceTHTMaterialKopieren extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        label7.getAccessibleContext().setAccessibleName("nach Arbeitsplatz ");
         tableNach = new JTable();
         jScrollPaneMaterialNach.setViewportView(tableNach);
         tableVon = new JTable();

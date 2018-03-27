@@ -3,52 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package traceability.daten;
+package daten;
 
 /**
  *
  * @author Ralf Hackmann
  */
-public class Baugruppe {
+public class TwedgeVorgabe {
     
-    private String datum;
-    private String kuerzel;
-    private String artikelnr;
     private String abteilung;
     private String arbPlatz;
     private String betriebsauftrag;
+    private String user;
+    private String nutzen;
 
-    public Baugruppe(String kuerzel, String artikelnr, String abteilung, String arbPlatz, String betriebsauftrag) {
-        this.kuerzel = kuerzel;
-        this.artikelnr = artikelnr;
+    public TwedgeVorgabe(String abteilung, String arbPlatz, String user, String nutzen) {
         this.abteilung = abteilung;
         this.arbPlatz = arbPlatz;
-        this.betriebsauftrag = betriebsauftrag;
-    }
-   
-
-    public String getDatum() {
-        return datum;
-    }
-
-    public void setDatum(String datum) {
-        this.datum = datum;
-    }
-
-    public String getKuerzel() {
-        return kuerzel;
-    }
-
-    public void setKuerzel(String kuerzel) {
-        this.kuerzel = kuerzel;
-    }
-
-    public String getArtikelnr() {
-        return artikelnr;
-    }
-
-    public void setArtikelnr(String artikelnr) {
-        this.artikelnr = artikelnr;
+        this.user = user;
+        this.nutzen = nutzen;
     }
 
     public String getAbteilung() {
@@ -74,9 +47,23 @@ public class Baugruppe {
     public void setBetriebsauftrag(String betriebsauftrag) {
         this.betriebsauftrag = betriebsauftrag;
     }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getNutzen() {
+        return nutzen;
+    }
+
+    public void setNutzen(String nutzen) {
+        this.nutzen = nutzen;
+    }
     
     
     
 }
-
-

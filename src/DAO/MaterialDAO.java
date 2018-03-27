@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import traceability.daten.Material;
+import daten.Material;
 import java.io.*;
 import java.sql.*;
 import java.util.*;

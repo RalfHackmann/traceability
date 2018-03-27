@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import daten.Baugruppe;
+import daten.Nutzenvorgabe;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  *
  * @author U14
  */
-public class BaugruppeDAO {
+public class NutzenvorgabeDAO {
     
     private final Connection myConn;
 
-    public BaugruppeDAO() throws IOException, SQLException {
+    public NutzenvorgabeDAO() throws IOException, SQLException {
         
         Properties props = new Properties();
         props.load(new FileInputStream("trace.properties"));
@@ -38,29 +38,26 @@ public class BaugruppeDAO {
 
     /**
      *
-     * @param dieBaugruppe
+     * @param dieNutzenvorgabe
      */
     
-    public void insertBaugruppe (Baugruppe dieBaugruppe) {
+    public void insertNutzenvorgabe (Nutzenvorgabe dieNutzenvorgabe) {
         
         try {
             PreparedStatement myStmt = null;
+             
+            myStmt = myConn.prepareStatement("INSERT INTO nutzenVorgabe"
+                    + " (betriebsauftrag, ersteKarte, folgekarten)"
+                    + " VALUES (?,?,?)");
             
-            myStmt = myConn.prepareStatement("INSERT INTO baugruppe"
-                    + " (user, artikelnr, abteilung, ArbPlatz, Betriebsauftrag)"
-                    + " VALUES (?,?,?,?,?)");
-            
-            myStmt.setString(1, dieBaugruppe.getKuerzel());
-            myStmt.setString(2, dieBaugruppe.getArtikelnr());
-            myStmt.setString(3, dieBaugruppe.getAbteilung());
-            myStmt.setString(4, dieBaugruppe.getArbPlatz());
-            myStmt.setString(5, dieBaugruppe.getBetriebsauftrag());
-         
+            myStmt.setString(1, dieNutzenvorgabe.getBetriebsauftrag());
+            myStmt.setString(2, dieNutzenvorgabe.getErsteKarte().toString());
+            myStmt.setString(3, dieNutzenvorgabe.getFolgekarten().toString());
             
             myStmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Falsche oder unvollständige Eingaben, bitte wiederholen Sie die Eingabe","Fehler", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(BaugruppeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NutzenvorgabeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

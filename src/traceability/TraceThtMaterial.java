@@ -1,7 +1,7 @@
 package traceability;
 
 import DAO.MaterialDAO;
-import traceability.daten.Material;
+import daten.Material;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;

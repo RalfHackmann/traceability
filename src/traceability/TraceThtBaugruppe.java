@@ -6,7 +6,7 @@
 package traceability;
 
 import DAO.BaugruppeDAO;
-import traceability.daten.Baugruppe;
+import daten.Baugruppe;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
