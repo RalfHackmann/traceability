@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import daten.Nutzenvorgabe;
+import daten.*;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  *
  * @author Ralf Hackmann
  */
-public class NutzenvorgabeDAO {
+public class TwedgeVorgabeDAO {
     
     private final Connection myConn;
 
-    public NutzenvorgabeDAO() throws IOException, SQLException {
+    public TwedgeVorgabeDAO() throws IOException, SQLException {
         
         Properties props = new Properties();
         props.load(new FileInputStream("trace.properties"));
@@ -38,26 +38,28 @@ public class NutzenvorgabeDAO {
 
     /**
      *
-     * @param dieNutzenvorgabe
+     * @param dieTwedgeVorgabe
      */
     
-    public void insertNutzenvorgabe (Nutzenvorgabe dieNutzenvorgabe) {
+    public void insertTwedgeVorgabe (TwedgeVorgabe dieTwedgeVorgabe) {
         
         try {
             PreparedStatement myStmt = null;
              
-            myStmt = myConn.prepareStatement("INSERT INTO nutzenVorgabe"
-                    + " (betriebsauftrag, ersteKarte, folgekarten)"
-                    + " VALUES (?,?,?)");
+            myStmt = myConn.prepareStatement("INSERT INTO twedgeVorgabe"
+                    + " (abteilung,  arbPlatz ,betriebsauftrag, user, nutzen)"
+                    + " VALUES (?,?,?,?,?)");
             
-            myStmt.setString(1, dieNutzenvorgabe.getBetriebsauftrag());
-            myStmt.setString(2, dieNutzenvorgabe.getErsteKarte().toString());
-            myStmt.setString(3, dieNutzenvorgabe.getFolgekarten().toString());
+            myStmt.setString(1, dieTwedgeVorgabe.getAbteilung().toString());
+            myStmt.setString(2, dieTwedgeVorgabe.getArbPlatz());
+            myStmt.setString(3, dieTwedgeVorgabe.getBetriebsauftrag().toString());
+            myStmt.setString(4, dieTwedgeVorgabe.getUser().toString());
+            myStmt.setString(5, dieTwedgeVorgabe.getNutzen().toString());
             
             myStmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Falsche oder unvollständige Eingaben, bitte wiederholen Sie die Eingabe","Fehler", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(NutzenvorgabeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TwedgeVorgabeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -70,3 +72,4 @@ public class NutzenvorgabeDAO {
     
     
 }
+

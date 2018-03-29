@@ -7,7 +7,7 @@ package daten;
 
 /**
  *
- * @author U14
+ * @author Ralf Hackmann
  */
 public class Material {
     

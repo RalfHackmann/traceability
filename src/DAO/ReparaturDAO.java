@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import daten.Nutzenvorgabe;
+import daten.Reparatur;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  *
  * @author Ralf Hackmann
  */
-public class NutzenvorgabeDAO {
+public class ReparaturDAO {
     
     private final Connection myConn;
 
-    public NutzenvorgabeDAO() throws IOException, SQLException {
+    public ReparaturDAO() throws IOException, SQLException {
         
         Properties props = new Properties();
         props.load(new FileInputStream("trace.properties"));
@@ -38,26 +38,29 @@ public class NutzenvorgabeDAO {
 
     /**
      *
-     * @param dieNutzenvorgabe
+     * @param dieRepararur
      */
     
-    public void insertNutzenvorgabe (Nutzenvorgabe dieNutzenvorgabe) {
+    public void insertReparatur (Reparatur dieRepararur) {
         
         try {
             PreparedStatement myStmt = null;
-             
-            myStmt = myConn.prepareStatement("INSERT INTO nutzenVorgabe"
-                    + " (betriebsauftrag, ersteKarte, folgekarten)"
-                    + " VALUES (?,?,?)");
             
-            myStmt.setString(1, dieNutzenvorgabe.getBetriebsauftrag());
-            myStmt.setString(2, dieNutzenvorgabe.getErsteKarte().toString());
-            myStmt.setString(3, dieNutzenvorgabe.getFolgekarten().toString());
+            myStmt = myConn.prepareStatement("INSERT INTO baugruppe"
+                    + " (user, artikelnr, abteilung, ArbPlatz, Betriebsauftrag)"
+                    + " VALUES (?,?,?,?,?)");
+            
+            myStmt.setString(1, dieRepararur.);
+            myStmt.setString(2, dieRepararur);
+            myStmt.setString(3, dieRepararur);
+            myStmt.setString(4, dieReparatur);
+            myStmt.setString(5, dieRepararur);
+         
             
             myStmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Falsche oder unvollständige Eingaben, bitte wiederholen Sie die Eingabe","Fehler", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(NutzenvorgabeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReparaturDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

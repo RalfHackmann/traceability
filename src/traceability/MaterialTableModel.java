@@ -7,14 +7,13 @@ package traceability;
 
 import daten.Material;
 import java.util.List;
-import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
 
 
 
 /**
  *
- * @author U14
+ * @author Ralf Hackmann
  */
 class MaterialTableModel extends AbstractTableModel {
     

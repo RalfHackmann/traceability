@@ -288,6 +288,8 @@ public class TraceThtMaterial extends javax.swing.JFrame {
         table.getRowSorter().toggleSortOrder(1);
         table.getRowSorter().toggleSortOrder(1);
         
+        
+        
     }
             
     

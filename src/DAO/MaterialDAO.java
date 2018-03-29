@@ -148,8 +148,6 @@ public class MaterialDAO {
             JOptionPane.showMessageDialog(null,"Falsche oder unvollständige Eingaben, bitte wiederholen Sie die Eingabe","Fehler", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
     
     public void initMaterial () {

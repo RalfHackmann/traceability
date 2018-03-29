@@ -217,10 +217,6 @@ public class TraceSmdRuesten extends javax.swing.JFrame {
 
     private void jTextFieldSeriennummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSeriennummerActionPerformed
         // TODO add your handling code here:
-
-        //System.out.println("Kuezel: " + jTextFieldKuerzel.getText() + " PmNr: " + jTextFieldPmNr.getText() + " Tisch: " + jTextFieldTischNr.getText() + " Charge: " + jTextFieldCharge.getText() + 
-         //                   " Seriennummer: " + jTextFieldSeriennummer.getText());
-        
         Material tempMaterial = null;
      
         String Kuerzel = stammdaten.getUser(); 
@@ -241,7 +237,8 @@ public class TraceSmdRuesten extends javax.swing.JFrame {
         jTextFieldCharge.setText("");
         jTextFieldCharge.requestFocus();
         
-              List<Material> material = null;
+        List<Material> material = null;
+        
         try {
             material = materialDAO.getAllMaterial();
         } catch (SQLException ex) {

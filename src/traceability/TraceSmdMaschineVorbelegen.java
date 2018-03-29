@@ -7,11 +7,12 @@ package traceability;
 
 
 import DAO.NutzenvorgabeDAO;
+import DAO.TwedgeVorgabeDAO;
 import daten.Nutzenvorgabe;
+import daten.TwedgeVorgabe;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -24,6 +25,8 @@ import static traceability.TraceStart.stammdaten;
 public class TraceSmdMaschineVorbelegen extends javax.swing.JFrame {
     
     private NutzenvorgabeDAO tempNutzenvorgabeDAO;
+    private TwedgeVorgabeDAO tempTwedgeVorgabeDAO;
+    
     private int ersteSeriennummer;
 
     /**
@@ -35,6 +38,7 @@ public class TraceSmdMaschineVorbelegen extends javax.swing.JFrame {
             initComponents();
             
             tempNutzenvorgabeDAO = new NutzenvorgabeDAO();
+            tempTwedgeVorgabeDAO = new TwedgeVorgabeDAO();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(TraceSmdMaschineVorbelegen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -248,18 +252,15 @@ public class TraceSmdMaschineVorbelegen extends javax.swing.JFrame {
 
     private void jTextFieldErsteSeriennummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldErsteSeriennummerActionPerformed
         // TODO add your handling code here:
-        
-         
-         if (jTextFieldErsteSeriennummer.getText().equals("") ) {
-            JOptionPane.showMessageDialog(null,"Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);            
+        if (jTextFieldErsteSeriennummer.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Bitte machen Sie eine gültige Eingabe", "Fehler", JOptionPane.WARNING_MESSAGE);
             jTextFieldErsteSeriennummer.requestFocus();
         } else {
-             ersteSeriennummer = Integer.parseInt(jTextFieldErsteSeriennummer.getText());
+            ersteSeriennummer = Integer.parseInt(jTextFieldErsteSeriennummer.getText());
             insertSeriennummer(ersteSeriennummer);
             jTextFieldFolgeSeriennummern.requestFocus();
-            
         }
-        
+      
       
     }//GEN-LAST:event_jTextFieldErsteSeriennummerActionPerformed
 
@@ -334,84 +335,86 @@ public class TraceSmdMaschineVorbelegen extends javax.swing.JFrame {
         jTextFieldFolgeSeriennummern.setEnabled(false);
         
         insertNutzenvorgabe();
+        insertTwedgeVorgabe();
         
         jButtonUebernehmen.setEnabled(false);
         jButtonUebernehmen.setText("ÜBERNOMMEN");
-        
-        
-    
     }//GEN-LAST:event_jButtonUebernehmenActionPerformed
 
+    
     /**
      *
-     * @param seriennummer
+     * @param dieSeriennummer
      */
     protected void insertSeriennummer(int dieSeriennummer) {
-        
+
         int maxLK = 0;
-       
+
         try {
             maxLK = Integer.parseInt(jTextFieldAnzahlLK.getText());
         } catch (NumberFormatException numberFormatException) {
-            JOptionPane.showMessageDialog(null,"Bitte geben Sie die Anzahl Leiterkarten pro Nutzen ein", "Fehler", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bitte geben Sie die Anzahl Leiterkarten pro Nutzen ein", "Fehler", JOptionPane.ERROR_MESSAGE);
             jTextFieldAnzahlLK.requestFocus();
 
         }
         zaelerLK++;
         seriennummern.add(dieSeriennummer);
         jTextAreaErfasseSn.append(dieSeriennummer + "\n");
-       
+
         labelAnzahlErfasseSN.setText(String.valueOf(zaelerLK) + " / " + jTextFieldAnzahlLK.getText());
-        
-        if (   zaelerLK == maxLK  ) {
-            
+
+        if (zaelerLK == maxLK) {
+
             jButtonUebernehmen.setEnabled(true);
-            
+
             jTextFieldFolgeSeriennummern.setEditable(false);
             jTextFieldErsteSeriennummer.setEditable(false);
             jTextFieldAnzahlLK.setEditable(false);
             jTextFieldBetriebsauftrag.setEditable(false);
-            
+
             jTextFieldFolgeSeriennummern.setEnabled(false);
         }
-        
-        
+
         jTextFieldErsteSeriennummer.setText("");
-      
+
     }
     
     
-       protected void insertNutzenvorgabe() {
-           
+    protected void insertNutzenvorgabe() {
+
         Nutzenvorgabe tempNutzenborgabe = null;
-     
-        
+
         String betriebsauftrag = jTextFieldBetriebsauftrag.getText();
-        int  ersteKarte = ersteSeriennummer;
-        //int  folgekarten = Integer.parseInt(jTextFieldFolgeSeriennummern.getText());
-       
-     
-      
+        int ersteKarte = ersteSeriennummer;
+
         int sn;
-        
-        
-           for (int i = 0; i < ( (seriennummern.size() )); i++) {
-               sn = seriennummern.get(i);
-               System.out.println("Seriennummer:" + sn);
 
-               Nutzenvorgabe tempNutzenvorgabe = new Nutzenvorgabe(betriebsauftrag, sn, ersteKarte);
+        for (int i = 0; i < ((seriennummern.size())); i++) {
 
-               tempNutzenvorgabeDAO.insertNutzenvorgabe(tempNutzenvorgabe);
+            sn = seriennummern.get(i);
 
-           }
-           
-        
+            Nutzenvorgabe tempNutzenvorgabe = new Nutzenvorgabe(betriebsauftrag, sn, ersteKarte);
+            tempNutzenvorgabeDAO.insertNutzenvorgabe(tempNutzenvorgabe);
+
+        }
+    }
      
-        
-   
-        
+       
+       
+    protected void insertTwedgeVorgabe() {
+
+        String abteilung = stammdaten.getAbteilung();
+        String arbPlatz = stammdaten.getArbeitsplatz();
+        String betriebsauftrag = jTextFieldBetriebsauftrag.getText();
+        String user = stammdaten.getUser();
+        String nutzen = jTextFieldAnzahlLK.getText();
+
+        TwedgeVorgabe tempTwedgeVorgabe = new TwedgeVorgabe(abteilung, arbPlatz, betriebsauftrag, user, nutzen);
+        tempTwedgeVorgabeDAO.insertTwedgeVorgabe(tempTwedgeVorgabe);
+
     }
     
+       
     /**
      * @param args the command line arguments
      */

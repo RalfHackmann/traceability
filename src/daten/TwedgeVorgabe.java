@@ -17,9 +17,10 @@ public class TwedgeVorgabe {
     private String user;
     private String nutzen;
 
-    public TwedgeVorgabe(String abteilung, String arbPlatz, String user, String nutzen) {
+    public TwedgeVorgabe(String abteilung, String arbPlatz, String betriebsauftrag, String user, String nutzen) {
         this.abteilung = abteilung;
         this.arbPlatz = arbPlatz;
+        this.betriebsauftrag = betriebsauftrag;
         this.user = user;
         this.nutzen = nutzen;
     }

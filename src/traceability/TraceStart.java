@@ -7,10 +7,6 @@ package traceability;
 
 import DAO.MaterialDAO;
 import daten.Stammdaten;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,13 +23,7 @@ public class TraceStart extends javax.swing.JFrame {
      */
     public TraceStart() {
         initComponents();
-        try {
-            initMaterialDAO = new MaterialDAO();
-        } catch (IOException ex) {
-            Logger.getLogger(TraceStart.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TraceStart.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }
 
     /**
@@ -51,7 +41,7 @@ public class TraceStart extends javax.swing.JFrame {
         jButtonSmdRuesten = new javax.swing.JButton();
         jButtonSmdRuesten1 = new javax.swing.JButton();
         jButtonSmdMaschinenvorbelegeung = new javax.swing.JButton();
-        jButtonSmdMaschinenvorbelegeung1 = new javax.swing.JButton();
+        jButtonReparatur = new javax.swing.JButton();
         jTextFieldKuerzel = new javax.swing.JTextField();
         label2 = new java.awt.Label();
         jButtonTHTMaterialKopieren = new javax.swing.JButton();
@@ -106,18 +96,17 @@ public class TraceStart extends javax.swing.JFrame {
 
         jButtonSmdMaschinenvorbelegeung.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonSmdMaschinenvorbelegeung.setText("SMD Maschine vorbelegen");
-        jButtonSmdMaschinenvorbelegeung.setHideActionText(true);
         jButtonSmdMaschinenvorbelegeung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSmdMaschinenvorbelegeungActionPerformed(evt);
             }
         });
 
-        jButtonSmdMaschinenvorbelegeung1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButtonSmdMaschinenvorbelegeung1.setText("Reparatur");
-        jButtonSmdMaschinenvorbelegeung1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReparatur.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButtonReparatur.setText("Reparatur");
+        jButtonReparatur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSmdMaschinenvorbelegeung1ActionPerformed(evt);
+                jButtonReparaturActionPerformed(evt);
             }
         });
 
@@ -152,7 +141,7 @@ public class TraceStart extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSmdMaschinenvorbelegeung1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonReparatur, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSmdMaschinenvorbelegeung, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSmdRuesten, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTHTMaterial1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +187,7 @@ public class TraceStart extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonTHTMaterialKopieren)
                 .addGap(27, 27, 27)
-                .addComponent(jButtonSmdMaschinenvorbelegeung1)
+                .addComponent(jButtonReparatur)
                 .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -254,15 +243,19 @@ public class TraceStart extends javax.swing.JFrame {
             stammdaten.setUser(jTextFieldKuerzel.getText());
             new TraceSmdMaschineVorbelegen().setVisible(true);
         }
-        
-       
-        //initMaterialDAO.initMaterial();
+  
         
     }//GEN-LAST:event_jButtonSmdMaschinenvorbelegeungActionPerformed
 
-    private void jButtonSmdMaschinenvorbelegeung1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSmdMaschinenvorbelegeung1ActionPerformed
+    private void jButtonReparaturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReparaturActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSmdMaschinenvorbelegeung1ActionPerformed
+        if (jTextFieldKuerzel.getText().equals("") ) {
+            JOptionPane.showMessageDialog(null,"Bitte geben Sie Ihr gültiges Mitarbeiterkürzel ein", "Fehler", JOptionPane.WARNING_MESSAGE);
+        } else {
+            stammdaten.setUser(jTextFieldKuerzel.getText());
+            new TraceReparatur().setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonReparaturActionPerformed
 
     private void jTextFieldKuerzelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldKuerzelActionPerformed
         // TODO add your handling code here
@@ -323,8 +316,8 @@ public class TraceStart extends javax.swing.JFrame {
     public static Stammdaten stammdaten;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonReparatur;
     private javax.swing.JButton jButtonSmdMaschinenvorbelegeung;
-    private javax.swing.JButton jButtonSmdMaschinenvorbelegeung1;
     private javax.swing.JButton jButtonSmdRuesten;
     private javax.swing.JButton jButtonSmdRuesten1;
     private javax.swing.JButton jButtonTHTMaterial;
