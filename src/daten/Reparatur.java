@@ -12,15 +12,15 @@ package daten;
 public class Reparatur {
     
   private String user; 
-  private int betriebsauftrag; 
-  private int seriennr; 
+  private Integer betriebsauftrag; 
+  private Integer seriennr; 
   private String position;
   private String artikelnr;
   private String chargenr; 
   private String bemerkung; 
   private String datum; 
 
-    public Reparatur(String user, int betriebsauftrag, int seriennr, String position, String artikelnr, String chargenr, String bemerkung, String datum) {
+    public Reparatur(String user, Integer betriebsauftrag, Integer seriennr, String position, String artikelnr, String chargenr, String bemerkung, String datum) {
         this.user = user;
         this.betriebsauftrag = betriebsauftrag;
         this.seriennr = seriennr;
@@ -40,19 +40,19 @@ public class Reparatur {
         this.user = user;
     }
 
-    public int getBetriebsauftrag() {
+    public Integer getBetriebsauftrag() {
         return betriebsauftrag;
     }
 
-    public void setBetriebsauftrag(int betriebsauftrag) {
+    public void setBetriebsauftrag(Integer betriebsauftrag) {
         this.betriebsauftrag = betriebsauftrag;
     }
 
-    public int getSeriennr() {
+    public Integer getSeriennr() {
         return seriennr;
     }
 
-    public void setSeriennr(int seriennr) {
+    public void setSeriennr(Integer seriennr) {
         this.seriennr = seriennr;
     }
 

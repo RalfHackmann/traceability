@@ -271,6 +271,7 @@ public class TraceThtMaterial extends javax.swing.JFrame {
         jTextFieldSeriennummer.setText("");
         jTextFieldCharge.setText("");
         jTextFieldCharge.requestFocus();
+        
         List<Material> material = null;
         
         try {

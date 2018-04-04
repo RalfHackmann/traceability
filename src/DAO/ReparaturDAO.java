@@ -41,20 +41,24 @@ public class ReparaturDAO {
      * @param dieRepararur
      */
     
-    public void insertReparatur (Reparatur dieRepararur) {
+    public void insertReparatur (Reparatur dieReparatur) {
         
         try {
             PreparedStatement myStmt = null;
             
-            myStmt = myConn.prepareStatement("INSERT INTO baugruppe"
-                    + " (user, artikelnr, abteilung, ArbPlatz, Betriebsauftrag)"
-                    + " VALUES (?,?,?,?,?)");
+            myStmt = myConn.prepareStatement("INSERT INTO reparatur"
+                    + " (user, betriebsauftrag, seriennr, position, artikelnr, chargenr, bemerkung)"
+                    + " VALUES (?,?,?,?,?,?,?)");
             
-            myStmt.setString(1, dieRepararur.);
-            myStmt.setString(2, dieRepararur);
-            myStmt.setString(3, dieRepararur);
-            myStmt.setString(4, dieReparatur);
-            myStmt.setString(5, dieRepararur);
+     
+            
+            myStmt.setString(1, dieReparatur.getUser());
+            myStmt.setString(2, dieReparatur.getBetriebsauftrag().toString());
+            myStmt.setString(3, dieReparatur.getSeriennr().toString());
+            myStmt.setString(4, dieReparatur.getPosition());
+            myStmt.setString(5, dieReparatur.getArtikelnr());
+            myStmt.setString(6, dieReparatur.getChargenr());
+            myStmt.setString(7, dieReparatur.getBemerkung());
          
             
             myStmt.executeUpdate();
@@ -66,10 +70,65 @@ public class ReparaturDAO {
         
     }
     
+    public List<Reparatur> getReparatur( String betriebsauftrag) throws SQLException {
    
+        List<Reparatur> list;
+        list = new ArrayList<Reparatur>();
+        
+        Statement myStmt = null;
+        ResultSet myRs = null;
+        
+        PreparedStatement selectStmt = null;
+        
+        myStmt = myConn.createStatement();
+        
+        selectStmt = myConn.prepareStatement("SELECT * FROM reparatur " 
+                                           + "WHERE betriebsauftrag = ? " );
+        try {
+            selectStmt.setString(1, betriebsauftrag);
+            myRs = selectStmt.executeQuery();
             
+            } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Verbindung zur Datenbank möglicherweise abgebrochen","Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        try {
+            while (myRs.next()) {
+                Reparatur tempReparatur = convertRowToMaterial(myRs);
+                list.add(tempReparatur); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Verbindung zur Datenbank möglicherweise abgebrochen","Fehler", JOptionPane.ERROR_MESSAGE);
+        }
+        return list;
+        
+    }
+        
+        
+        
+
+    private Reparatur convertRowToMaterial(ResultSet myRs) throws SQLException {
+
     
-     
+        String user = myRs.getString("user");
+        Integer betriebsauftrag = Integer.parseInt(myRs.getString("betriebsauftrag"));
+        Integer seriennr = Integer.parseInt(myRs.getString("seriennr"));
+        String position = myRs.getString("position");
+        String artikelnr = myRs.getString("artikelnr");
+        String chargenr = myRs.getString("chargenr");
+        String bemerkung = myRs.getString("bemerkung");
+        String datum = myRs.getString("datum");
+    
+
+        Reparatur tempReparatur = new Reparatur(user, betriebsauftrag, seriennr, position, artikelnr, chargenr, bemerkung, datum);
+    
+        return tempReparatur;
+    }
     
     
-}
+
+       
+ }
+  

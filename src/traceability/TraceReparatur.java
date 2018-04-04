@@ -1,7 +1,7 @@
 package traceability;
 
-import DAO.MaterialDAO;
-import daten.Material;
+import DAO.ReparaturDAO;
+import daten.Reparatur;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,14 +19,17 @@ import static traceability.TraceStart.stammdaten;
 
 /**
  *
- * @author U14
+ * @author Ralf Hackmann
  */
 public class TraceReparatur extends javax.swing.JFrame {
     
-    private MaterialDAO materialDAO;
-    private MaterialDAO insertMaterialDAO;
     
+    private ReparaturDAO insertReparaturDAO;
     private JTable table;
+
+
+    
+   
 
     /**
      * Creates new form Trace
@@ -35,7 +38,7 @@ public class TraceReparatur extends javax.swing.JFrame {
         initComponents();
         
           try {
-            materialDAO = new MaterialDAO();
+            insertReparaturDAO = new ReparaturDAO();
         } catch (IOException | SQLException ex) {
             Logger.getLogger(TraceReparatur.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -68,6 +71,7 @@ public class TraceReparatur extends javax.swing.JFrame {
         jButtonNeu1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPaneBemerkung = new javax.swing.JTextPane();
+        jScrollPaneReparatur = new javax.swing.JScrollPane();
 
         setTitle("Tracebility THT Material");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -157,17 +161,21 @@ public class TraceReparatur extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(260, 260, 260)
-                .addComponent(jLabelTischNr)
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(260, 260, 260)
+                        .addComponent(jLabelTischNr)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonNeuerBetriebsauftrag)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonNeu1)
+                        .addGap(41, 41, 41))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonNeuerBetriebsauftrag)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButtonNeu1))
+                    .addComponent(jScrollPaneReparatur, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -237,25 +245,30 @@ public class TraceReparatur extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jScrollPane1)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNeuerBetriebsauftrag)
                     .addComponent(jButtonNeu1))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPaneReparatur, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
+
+        table = new JTable();
+        jScrollPaneReparatur.setViewportView(table);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldChargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldChargeActionPerformed
         // TODO add your handling code here:
-        jTextFieldCharge.setEditable(false);
+        //jTextFieldCharge.setEditable(false);
         jTextFieldArtikelnummer.requestFocus();
     }//GEN-LAST:event_jTextFieldChargeActionPerformed
 
     private void jTextFieldSeriennummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSeriennummerActionPerformed
         // TODO add your handling code here:
-        jTextFieldSeriennummer.setEditable(false);
+        //jTextFieldSeriennummer.setEditable(false);
         jTextFieldCharge.requestFocus();
       
     }//GEN-LAST:event_jTextFieldSeriennummerActionPerformed
@@ -272,67 +285,81 @@ public class TraceReparatur extends javax.swing.JFrame {
         jTextFieldBetriebsauftrag.setEnabled(true);
         jTextFieldBetriebsauftrag.setText("");
         jTextFieldBetriebsauftrag.setVisible(true);
+        jTextFieldBetriebsauftrag.setEditable(true);
         jTextFieldBetriebsauftrag.requestFocus();
     }//GEN-LAST:event_jButtonNeuerBetriebsauftragActionPerformed
 
     private void jTextFieldArtikelnummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldArtikelnummerActionPerformed
         // TODO add your handling code here:
-        jTextFieldArtikelnummer.setEditable(false);
+        //jTextFieldArtikelnummer.setEditable(false);
         jTextFieldPosition.requestFocus();
     }//GEN-LAST:event_jTextFieldArtikelnummerActionPerformed
 
     private void jTextFieldPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPositionActionPerformed
         // TODO add your handling code here:
-        jTextFieldPosition.setEditable(false);
+        //jTextFieldPosition.setEditable(false);
         jTextPaneBemerkung.requestFocus();
     }//GEN-LAST:event_jTextFieldPositionActionPerformed
 
     private void jButtonNeu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNeu1ActionPerformed
         // TODO add your handling code here:
+        speichern();
+        laden(Integer.parseInt(jTextFieldBetriebsauftrag.getText()));
+        jTextFieldArtikelnummer.setText("");
+        jTextFieldSeriennummer.setText("");
+        jTextFieldCharge.setText("");
+        jTextFieldPosition.setText("");
+        jTextPaneBemerkung.setText("");
+        jTextFieldSeriennummer.requestFocus();
         
-        System.out.println(jTextPaneBemerkung.getText());
+        
+      
     }//GEN-LAST:event_jButtonNeu1ActionPerformed
 
     
     private void speichern() {
         
-          Material tempMaterial = null;
+        Reparatur tempReparatur = null;
      
         String Kuerzel = stammdaten.getUser(); 
-        String artikelnr = jTextFieldSeriennummer.getText();
-        String dieAbteilung = stammdaten.getAbteilung();
-        String ArbPlatz = stammdaten.getArbeitsplatz();
-        String TischNr = stammdaten.getArbeitsplatz();
-        String PmNr = jTextFieldBetriebsauftrag.getText();
-        String Charge = jTextFieldCharge.getText();
-        String rollew = "0";
+        Integer betriebsauftrag = Integer.parseInt(jTextFieldBetriebsauftrag.getText());
+        Integer seriennr = Integer.parseInt(jTextFieldSeriennummer.getText());
+        String position = jTextFieldPosition.getText();
+        String artikelnr = jTextFieldArtikelnummer.getText();
+        String chargenr = jTextFieldCharge.getText();
+        String bemerkung = jTextPaneBemerkung.getText();
         String datum = "0";
         
-        tempMaterial = new Material (datum, Kuerzel, artikelnr, dieAbteilung, ArbPlatz,  PmNr, Charge, rollew);
+        tempReparatur = new Reparatur (Kuerzel, betriebsauftrag, seriennr, position, artikelnr, chargenr, bemerkung, datum );
         
-        materialDAO.insertMaterial(tempMaterial);
+        insertReparaturDAO.insertReparatur(tempReparatur);
         
-        jTextFieldSeriennummer.setText("");
-        jTextFieldCharge.setText("");
-        jTextFieldCharge.requestFocus();
+    }
+    
+    private void laden( Integer betriebsauftrag) {
         
-        List<Material> material = null;
-        
+           List<Reparatur> reparatur = null;
+           ReparaturDAO reparaturDAO = null;
         try {
-            material = materialDAO.getAllMaterial();
-        } catch (SQLException ex) {
+            reparaturDAO = new ReparaturDAO();
+        } catch (IOException | SQLException ex) {
             Logger.getLogger(TraceReparatur.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        MaterialTableModel model;
-        model = new MaterialTableModel(material);
+        try {
+            reparatur = reparaturDAO.getReparatur(betriebsauftrag.toString()); 
+        } catch (SQLException ex) {
+            Logger.getLogger(TraceThtMaterial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ReparaturTableModel model;
+        model = new ReparaturTableModel(reparatur);
         table.setModel(model);
         
         // Tabelle nach der 2. Spalte sortiet
         table.setAutoCreateRowSorter(true);
         table.getRowSorter().toggleSortOrder(1);
         table.getRowSorter().toggleSortOrder(1);
-        
     }
     
     
@@ -380,6 +407,7 @@ public class TraceReparatur extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTischNr;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneReparatur;
     private javax.swing.JTextField jTextFieldArtikelnummer;
     private javax.swing.JTextField jTextFieldBetriebsauftrag;
     private javax.swing.JTextField jTextFieldCharge;

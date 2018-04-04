@@ -150,19 +150,6 @@ public class MaterialDAO {
         }
     }
     
-    public void initMaterial () {
-        
-        try {
-            Statement initStmt = null;
-            initStmt = myConn.createStatement();
-            //ALTER TABLE `material` CHANGE `pmnr` `pmnr` INT(11) UNSIGNED NOT NULL DEFAULT '4711';
-            initStmt.executeUpdate("ALTER TABLE material  CHANGE pmnr pmnr INT(11) UNSIGNED NOT NULL DEFAULT '4712'");
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    
     private Material convertRowToMaterial(ResultSet myRs) throws SQLException {
         
         String datum = myRs.getString("datum");
